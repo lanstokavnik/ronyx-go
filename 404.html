@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Ronyx Fitness</title>
+<!--
+  GitHub Pages serves this for any path it doesn't have. A friend invite
+  (go.ronyx.si/add/CODE) opens the app directly on an iPhone that has it
+  (universal link, see .well-known/apple-app-site-association); anywhere
+  else it lands here, which shows the code. Any other path goes to ronyx.si.
+-->
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: #191716; background-image: linear-gradient(135deg, #221C17 0%, #191716 55%, #17161B 100%);
+    color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    padding: 24px 16px;
+  }
+  .wrap { width: 100%; max-width: 420px; }
+  .brand { font-size: 13px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin: 0 8px 18px; }
+  .pane {
+    padding: 32px 26px; border-radius: 32px; border: 1px solid #57504A;
+    background: linear-gradient(135deg, #3A3028 0%, #2A2420 100%);
+    box-shadow: 8px 12px 32px rgba(0,0,0,0.55);
+  }
+  h1 { font-size: 24px; font-weight: 600; letter-spacing: -0.4px; margin: 0; }
+  p { color: #D2CDC8; font-size: 15.5px; line-height: 1.5; margin: 10px 0 0; }
+  .button {
+    display: block; width: 100%; margin-top: 26px; padding: 17px 12px; border: 0; border-radius: 999px;
+    background: #fff; color: #0F0E0D; font-size: 16px; font-weight: 600; text-align: center; text-decoration: none;
+  }
+  .hint { color: #A39D98; font-size: 13.5px; text-align: center; margin-top: 18px; }
+  .code {
+    margin-top: 12px; padding: 18px 12px; border-radius: 999px; border: 1px solid #5C554F; background: #3A332E;
+    font-size: 34px; font-weight: 600; letter-spacing: 8px; text-align: center; font-variant-numeric: tabular-nums;
+  }
+  .copy {
+    display: block; width: 100%; margin-top: 12px; padding: 14px 12px; border-radius: 999px;
+    border: 1px solid #57504A; background: rgba(255,255,255,0.06); color: #fff; font-size: 15px; font-weight: 600;
+  }
+  .small { color: #A39D98; font-size: 13px; line-height: 1.5; margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">Ronyx Fitness</div>
+  <div class="pane">
+    <h1>You're invited</h1>
+    <p>A friend wants to compare daily scores with you on Ronyx Fitness. It's in testing for now, so ask them for an invite to the app.</p>
+    <a id="open" class="button" href="#">Open in Ronyx Fitness</a>
+    <div class="hint">Already have the app? In Friends, add this code:</div>
+    <div id="code" class="code">–</div>
+    <button id="copy" class="copy" type="button">Copy code</button>
+    <div class="small">Friends only ever see your name and your daily score.</div>
+  </div>
+</div>
+<script>
+  (function () {
+    var parts = location.pathname.split("/").filter(Boolean);
+    if (parts[0] !== "add" || !parts[1]) { location.replace("https://ronyx.si"); return; }
+    var code = parts[1].toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6);
+    document.getElementById("code").textContent = code.length === 6 ? code.slice(0, 3) + "-" + code.slice(3) : code;
+    document.getElementById("open").href = "ronyxfitness://add/" + code;
+    document.getElementById("copy").addEventListener("click", function () {
+      var button = this;
+      navigator.clipboard.writeText(code).then(function () { button.textContent = "Copied"; });
+    });
+  })();
+</script>
+</body>
+</html>

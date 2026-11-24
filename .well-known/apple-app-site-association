@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["KP68H8YNDW.si.ronyx.fitness"],
+        "components": [
+          { "/": "/add/*", "comment": "Friend invites: open the app with the request ready" },
+          { "/": "/signin*", "comment": "The code email's Sign in button" }
+        ]
+      }
+    ]
+  }
+}
